@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
@@ -9,8 +9,8 @@ export class OrdersService {
 
   constructor( private firestore: AngularFirestore ) { }
   form = new FormGroup({
-    customerName: new FormControl(''),
-    orderNumber: new FormControl(''),
+    customerName: new FormControl('', Validators.required),
+    orderNumber: new FormControl('', Validators.required),
     coffeeOrder: new FormControl(''),
     completed: new FormControl(false)
   })
@@ -23,6 +23,7 @@ export class OrdersService {
           .then(res => {}, err => reject(err));
     });
   }
+  
 //get values stored in coffeeOrders collection
   getCoffeeOrders() {
     return this.firestore.collection("coffeeOrders").snapshotChanges();

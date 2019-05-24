@@ -14,7 +14,7 @@
       <td ng-class="{strike: deleted}">{{ order.payload.doc.data().customerName }}</td>
       <td>
         <span *ngFor="let coffee of order.payload.doc.data().coffeeOrder" ng-class="{strike: deleted}">
-          {{ coffee }}
+          {{ coffee }},
         </span>
       </td>
       <td (click)="markCompleted(order)">

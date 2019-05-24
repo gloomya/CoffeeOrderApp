@@ -20,6 +20,7 @@ export class OrdersComponent implements OnInit {
     let index = this.coffeeOrder.indexOf(coffee);
     if (index > -1) this.coffeeOrder.splice(index, 1)
   };
+
   onSubmit() {
     this.ordersService.form.value.coffeeOrder = this.coffeeOrder;
     let data = this.ordersService.form.value;
@@ -27,6 +28,7 @@ export class OrdersComponent implements OnInit {
     this.ordersService.createCoffeeOrder(data)
         .then(res => {
             //there will be something like a success message or reset the form
+            this.ordersService.form.reset();
         });
   }
 
