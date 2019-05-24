@@ -1,3 +1,28 @@
-<p>
-  order-list works!
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Order No</th>
+      <th>Customer Name</th>
+      <th>Coffee List</th>
+      <th>Mark as Completed</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of coffeeOrders">
+      <td>{{ order.payload.doc.data().orderNumber }}</td>
+      <td>{{ order.payload.doc.data().customerName }}</td>
+      <td>
+        <span *ngFor="let coffee of order.payload.doc.data().coffeeOrder">
+          {{ coffee }}
+        </span>
+      </td>
+      <td (click)="markCompleted(order)">
+        <i class="material-icons check-icon">check</i>
+      </td>
+      <td (click)="deleteOrder(order)">
+        <i class="material-icons del-icon">delete_forever</i>
+      </td>
+    </tr>
+  </tbody>
+</table>
