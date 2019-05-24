@@ -4,21 +4,22 @@
       <th>Order No</th>
       <th>Customer Name</th>
       <th>Coffee List</th>
-      <th>Mark as Completed</th>
+      <th>Done</th>
       <th>Delete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let order of coffeeOrders">
-      <td>{{ order.payload.doc.data().orderNumber }}</td>
-      <td>{{ order.payload.doc.data().customerName }}</td>
+      <td ng-class="{strike: deleted}">{{ order.payload.doc.data().orderNumber }}</td>
+      <td ng-class="{strike: deleted}">{{ order.payload.doc.data().customerName }}</td>
       <td>
-        <span *ngFor="let coffee of order.payload.doc.data().coffeeOrder">
+        <span *ngFor="let coffee of order.payload.doc.data().coffeeOrder" ng-class="{strike: deleted}">
           {{ coffee }}
         </span>
       </td>
       <td (click)="markCompleted(order)">
-        <i class="material-icons check-icon">check</i>
+          <div *ngIf="order.payload.doc.data().completed" ng-model="deleted">---</div>
+          <div *ngIf="!order.payload.doc.data().completed"><i class="material-icons check-icon">check</i></div>
       </td>
       <td (click)="deleteOrder(order)">
         <i class="material-icons del-icon">delete_forever</i>
