@@ -8,7 +8,7 @@ import { OrdersService } from '../shared/orders.service';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(private ordersService:OrdersService) { }
+  constructor(public ordersService:OrdersService) { }
 
   coffees = ["Americano", "Flat White", "Cappuccino", "Latte", "Espresso", "Machiato", "Mocha", "Hot Chocolate", "Tea"];
 //empty array to house the coffee order
